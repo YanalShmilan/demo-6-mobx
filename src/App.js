@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import './assets/css/animate.css';
+import './assets/css/bootstrap-5.0.0-beta2.min.css';
+import './assets/css/LineIcons.2.0.css';
+import './assets/css/main.css';
+import './assets/css/tiny-slider.css';
+import Nav from './Components/Nav';
+import Home from './Components/Home';
+import Doctors from './Components/Doctors';
+import { Route, Switch } from 'react-router';
+import DoctorDetails from './Components/DoctorDetails';
+import doctorsData from './doctorsData';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <Switch>
+        <Route path="/doctors/:doctorSlug">
+          <DoctorDetails doctors={doctorsData} />
+        </Route>
+        <Route path="/doctors">
+          <Doctors />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+      </Switch>
     </div>
   );
 }
